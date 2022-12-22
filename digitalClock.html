@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digital clock</title>
+    <style>
+        body {
+            background-color: rgb(199, 163, 163);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: larger;
+        }
+
+        .container {
+            border: 2px solid black;
+            width: 50%;
+            text-align: center;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body onload="setInterval(DisplayDateAndTime, 1000)">
+    <h4 style="text-align: center;"> DIGITAL CLOCK </h4>
+    <div class="container">
+        <span id="hours">00</span> :
+        <span id="mins">00</span> :
+        <span id="secs">00</span>
+        <span id="ap">ampm</span>
+    </div>
+    <div class="container">
+        <span id="date">00 </span> -
+        <span id="month">00 </span> -
+        <span id="year">0000</span>
+        <h4 id="day"> some day </h4>
+    </div>
+    <script>
+        function DisplayDateAndTime() {
+            let x = "AM", y = "PM"
+            let curdateobj = new Date();
+            let curhours = curdateobj.getHours()
+            let curmins = curdateobj.getMinutes()
+            let cursecs = curdateobj.getSeconds()
+            let curdate = curdateobj.getDate()
+            let curmonth = curdateobj.getMonth() + 1
+            let curyear = curdateobj.getFullYear()
+            document.getElementById("hours").innerHTML = curhours
+            document.getElementById("mins").innerHTML = curmins
+            document.getElementById("secs").innerHTML = cursecs
+            if (curhours > 12) {
+                document.getElementById("ap").innerHTML = y
+            }
+            else {
+                document.getElementById("ap").innerHTML = x
+            }
+            document.getElementById("date").innerHTML = curdate
+            document.getElementById('month').innerHTML = curmonth
+            document.getElementById('year').innerHTML = curyear
+            let curday = curdateobj.getDay()
+            switch (curday) {
+                case 0: curday = "SUNDAY"
+                    break;
+                case 1: curday = "MONDAY"
+                    break;
+                case 2: curday = "TUESDAY"
+                    break;
+                case 3: curday = "WEDNESDAY"
+                    break;
+                case 4: curday = "THURSDAY"
+                    break;
+                case 5: curday = "FRIDAY"
+                    break;
+                case 6: curday = "SATURDAY"
+                    break;
+            }
+            document.getElementById("day").innerHTML = curday;
+        } 
+    </script>
+</body>
+
+</html>
